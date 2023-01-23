@@ -1,0 +1,182 @@
+<html>
+    <head>
+        <!--link to add jquery to the page, jquery = easier version of javascript-->
+        <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+        
+        <title>VALORANT Agent Spinner</title>
+        <style>
+        </style>
+    </head>
+    <body>
+        <!--tells the user what to do, contents generated with javascript-->
+        <p id="instructions"></p>
+
+        <!--btn to get a new random agent-->
+        <button id="spin">Random Agent</button>
+
+        <!--an empty div that we dump all of the agent info into-->
+        <div id="gents"></div>
+
+
+        <script>
+            //an array with all the agent information, EACH BLOCK IS ONE AGENT
+            agents = [
+                //BLOCK 1
+                {
+                    //the agent name
+                    name: "Brimestone",
+                    //the path to the agent image
+                    url: "media/brimstone.png",
+                    //the agent type
+                    role: "Controller",
+                    //the agent bio
+                    bio: "Joining from the USA, Brimstone's orbital arsenal ensures his squad always has the advantage. His ability to deliver utility precisely and from a distance makes him an unmatched boots-on-the-ground commander."
+                }, 
+                //BLOCK 2
+                {
+                    name: "Pheonix",
+                    url: "media/pheonix.png",
+                    role: "Duelist",
+                    bio: "Hailing from the U.K., Phoenix's star power shines through in his fighting style, igniting the battlefield with flash and flare. Whether he's got backup or not, he'll rush into a fight on his own terms."
+                },
+                //BLOCK 3
+                {
+                    name: "Sage",
+                    url: "media/sage.png",
+                    role: "Sentinel",
+                    bio: "The stronghold of China, Sage creates safety for herself and her team wherever she goes. Able to revive fallen friends and stave off aggressive pushes, she provides a calm center to a hellish fight."
+                },
+                //etc
+                {
+                    name: "Sova",
+                    url: "media/sova.png",
+                    role: "Initiator",
+                    bio: "Born from the eternal winter of Russia's tundra, Sova tracks, finds, and eliminates enemies with ruthless efficiency and precision. His custom bow and incredible scouting abilities ensure that even if you run, you cannot hide."
+                },
+                {
+                    name: "Viper",
+                    url: "media/viper.png",
+                    role: "Controller",
+                    bio: "The American chemist, Viper deploys an array of poisonous chemical devices to control the battlefield and cripple the enemy's vision. If the toxins don't kill her prey, her mind games surely will."
+                },
+                {
+                    name: "Cypher",
+                    url: "media/cypher.png",
+                    role: "Sentinel",
+                    bio: "The Moroccan information broker, Cypher is a one-man surveillance network who keeps tabs on the enemy's every move. No secret is safe. No maneuver goes unseen. Cypher is always watching."
+                },
+                {
+                    name: "Reyna",
+                    url: "media/reyna.png",
+                    role: "Duelist",
+                    bio: "Forged in the heart of Mexico, Reyna dominates single combat, popping off with each kill she scores. Her capability is only limited by her raw skill, making her highly dependent on performance."
+                },
+                {
+                    name: "Killjoy",
+                    url: "media/killjoy.png",
+                    role: "Sentinel",
+                    bio: "The genius of Germany. Killjoy secures the battlefield with ease using her arsenal of inventions. If the damage from her gear doesn't stop her enemies, her robots' debuff will help make short work of them."
+                },
+                {
+                    name: "Breach",
+                    url: "media/breach.png",
+                    role: "Initiator",
+                    bio: "Breach, the bionic Swede, fires powerful, targeted kinetic blasts to aggressively clear a path through enemy ground. The damage and disruption he inflicts ensures no fight is ever fair."
+                },
+                {
+                    name: "Omen",
+                    url: "media/omen.png",
+                    role: "Controller",
+                    bio: "A phantom of a memory, Omen hunts in the shadows. He renders enemies blind, teleports across the field, then lets paranoia take hold as his foe scrambles to learn where he might strike next."
+                },
+                {
+                    name: "Jett",
+                    url: "media/jett.png",
+                    role: "Duelist",
+                    bio: "Representing her home country of South Korea, Jett's agile and evasive fighting style lets her take risks no one else can. She runs circles around every skirmish, cutting enemies before they even know what hit them."
+                },
+                {
+                    name: "Raze",
+                    url: "media/raze.png",
+                    role: "Duelist",
+                    bio: "Raze explodes out of Brazil with her big personality and big guns. With her blunt-force-trauma playstyle, she excels at flushing entrenched enemies and clearing tight spaces with a generous dose of “boom.”"
+                },
+                {
+                    name: "Skye",
+                    url: "media/skye.png",
+                    role: "Initiator",
+                    bio: "Hailing from Australia, Skye and her band of beasts trail-blaze the way through hostile territory. With her creations hampering the enemy, and her power to heal others, the team is strongest and safest by Skye’s side."
+                },
+                {
+                    name: "Yoru",
+                    url: "media/yoru.png",
+                    role: "Duelist",
+                    bio: "Japanese native, Yoru, rips holes straight through reality to infiltrate enemy lines unseen. Using deception and aggression in equal measure, he gets the drop on each target before they know where to look."
+                },
+                {
+                    name: "Astra",
+                    url: "media/astra.png",
+                    role: "Controller",
+                    bio: "Ghanaian Agent Astra harnesses the energies of the cosmos to reshape battlefields to her whim. With full command of her astral form and a talent for deep strategic foresight, she's always eons ahead of her enemy's next move."
+                },
+                {
+                    name: "Kayo",
+                    url: "media/kayo.png",
+                    role: "Initiator",
+                    bio: "KAY/O is a machine of war built for a single purpose: neutralizing radiants. His power to suppress enemy abilities cripples his opponents' capacity to fight back, securing him and his allies the ultimate edge."
+                },
+                {
+                    name: "Chamber",
+                    url: "media/chamber.png",
+                    role: "Sentinel",
+                    bio: "Well dressed and well armed, French weapons designer Chamber expels aggressors with deadly precision. He leverages his custom arsenal to hold the line and pick off enemies from afar, with a contingency built for every plan."
+                },
+                {
+                    name: "Neon",
+                    url: "media/neon.png",
+                    role: "Duelist",
+                    bio: "Filipino Agent Neon surges forward at shocking speeds, discharging bursts of bioelectric radiance as fast as her body generates it. She races ahead to catch enemies off guard, then strikes them down quicker than lightning."
+                },
+                {
+                    name: "Fade",
+                    url: "media/fade.png",
+                    role: "Initiator",
+                    bio: "Turkish bounty hunter, Fade, unleashes the power of raw nightmares to seize enemy secrets. Attuned with terror itself, she hunts targets and reveals their deepest fears—before crushing them in the dark."
+                },
+                {
+                    name: "Harbor",
+                    url: "media/harbor.png",
+                    role: "Controller",
+                    bio: "Hailing from India’s coast, Harbor storms the field wielding ancient technology with dominion over water. He unleashes frothing rapids and crushing waves to shield his allies and pummel those that oppose him."
+                },
+                
+            ]
+
+            // setting up the var for random numbers
+            var i;
+
+            //making a function for generating random agents
+            function genRandomAgent() {
+
+                //generate a random number 0 and the length of the "agents" array
+                i = Math.floor((Math.random() * agents.length));
+
+                //format the information from the agents array and then add it to the "gents" div
+                $("#gents").html("<div class='agent'><img src='"+agents[i].url+"'><p class='name'>NAME: "+agents[i].name+"</p><p class='role'>ROLE: "+agents[i].role+"</p><p class='bio'>BIOGRAPHY: "+agents[i].bio+"</p></div>");
+            }
+            
+            //generating a random agent when the page loads
+            genRandomAgent();
+
+            //action for when the spin btn is clicked
+            $("#spin").click(function() {
+
+                //generating a new random agent
+                genRandomAgent();
+            })
+
+            //filling the "instructions" paragraph with js so it displays the right number of agents
+            $("#instructions").html("There are currently "+agents.length+" agents.<br>Press the button below to get a random one.")
+        </script>
+    </body>
+</html>
