@@ -5,9 +5,22 @@
         
         <title>VALORANT Agent Spinner</title>
         <style>
+            /*bro u got a style tag but u aint using it XD*/
+            body {
+              color: #FF4454; /**/
+              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+              padding-bottom: 50px; /* it's like a footer but not quite */
+            }
+            button {
+              background-color: #FF4454;
+              color: white;
+              border: none;
+              padding: 10px;
+            }
         </style>
     </head>
     <body>
+      <img src="media/valorant-logo.png" width="200px">
         <!--tells the user what to do, contents generated with javascript-->
         <p id="instructions"></p>
 
@@ -162,7 +175,7 @@
                 i = Math.floor((Math.random() * agents.length));
 
                 //format the information from the agents array and then add it to the "gents" div
-                $("#gents").html("<div class='agent'><img src='"+agents[i].url+"'><p class='name'>NAME: "+agents[i].name+"</p><p class='role'>ROLE: "+agents[i].role+"</p><p class='bio'>BIOGRAPHY: "+agents[i].bio+"</p></div>");
+                $("#gents").html("<div class='agent'><img src='"+agents[i].url+"'><p class='name'><b>NAME:</b> "+agents[i].name+"</p><p class='role'><b>ROLE:</b> "+agents[i].role+"</p><p class='bio'><b>BIOGRAPHY:</b> "+agents[i].bio+"</p></div>");
             }
             
             //generating a random agent when the page loads
