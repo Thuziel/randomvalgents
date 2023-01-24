@@ -1,3 +1,3 @@
 # randomvalgents
-just a small project being created for fun my people trying have fun and i dont think its working
-"actually... im having a bit of fun" - thuziel
+just a small project being created for fun by people trying have fun... i dont think its working
+UPDATE: "actually... im having a bit of fun" - thuziel
